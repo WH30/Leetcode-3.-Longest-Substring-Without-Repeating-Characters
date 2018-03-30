@@ -1,0 +1,21 @@
+int lengthOfLongestSubstring(string s)
+	{
+	    string str="" ;                    //用于储存无重复字符的字符窜
+		int len = 0; int max = 0;             //len记录现有的长度，max记录最大的
+    for (int i = 0; i<s.length(); i++)   
+		{
+			if (str.find(s[i]) < 1000)      //过滤掉找不到时出现的一些神奇的数
+			{
+				len -= (str.find_first_of(s[i]) + 1);  //把上次出现于s【i】相同的字符前的所有字符删除
+				str.erase(0, str.find(s[i])+1);
+				//cout << str.find(s[i]);
+				
+			}
+                str = str + s[i];     //加到str末尾
+				len++;                         //长度加一
+				max = len > max ? len : max;     //比较
+
+			}
+		
+		return max;                        //返回
+	}
